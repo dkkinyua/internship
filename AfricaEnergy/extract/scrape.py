@@ -24,6 +24,8 @@ def scrape_sector_data(driver, sector_name):
         select2_selection = WebDriverWait(driver.driver, 30).until(
             EC.presence_of_element_located((By.CSS_SELECTOR, ".maingrouping-select + .select2 .select2-selection__rendered"))
         )
+
+        # <h2>Electricity</h2>
         
         current_sector = select2_selection.text.strip()
         print(f"  Current sector: {current_sector}")
@@ -178,7 +180,7 @@ def extract_chart_data(driver, sector_name):
     except Exception as e:
         print(f"  Warning: Could not extract indicator metadata: {e}")
     
-    # Enhanced JavaScript to extract chart data - gets ALL years
+    # Enhanced JavaScript to extract chart data and gets all years
     extract_script = """
     var allData = [];
     if (Highcharts && Highcharts.charts) {
