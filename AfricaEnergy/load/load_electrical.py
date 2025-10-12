@@ -8,11 +8,11 @@ MONGO_URI = os.getenv("MONGO_URI")
 
 client = MongoClient(MONGO_URI)
 db = client.get_database("africa_energy")
-collection = db.get_collection("energy_collect")
+collection = db.get_collection("electrical_collection")
 
-def load_energy_data(collection):
+def load_electrical_data(collection):
     try:
-        df = pd.read_csv("/home/deecodes/internship/AfricaEnergy/staging_data/africa_energy_data.csv")
+        df = pd.read_csv("/home/deecodes/internship/AfricaEnergy/staging_data/africa_electricity_data.csv")
         df = df.drop(columns=["Unnamed: 0"], errors="ignore")
         df = df.dropna(axis=1, how='all')
         data_dict = df.to_dict("records")
@@ -23,4 +23,4 @@ def load_energy_data(collection):
         print(f"Error loading data to collection: {e}")
 
 if __name__ == "__main__":
-    load_energy_data(collection)
+    load_electrical_data(collection)
