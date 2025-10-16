@@ -389,7 +389,7 @@ def scrape_all_sectors():
                 df = df[columns]
                 
                 # Save to CSV
-                filename = f"africa_energy_{sector.lower().replace(' ', '_')}_data.csv"
+                filename = f"staging_data/africa_energy_{sector.lower().replace(' ', '_')}_data.csv"
                 df.to_csv(filename, index=False)
                 print(f"\n✓ Saved {sector} data to {filename} ({len(df)} rows)\n")
                 
